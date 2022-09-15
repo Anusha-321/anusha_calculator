@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Ayushma Calculator</title>
+    <style>
+        .btn_value {
+            height: 30px;
+            outline: none;
+            background-color: #122a67;
+            color: white;
+            border: solid black 0.5px;
+            width: 10%;
+            border-radius: 5px;
+        }
+
+        .btn_value:active {
+            -moz-box-shadow: inset 0px 0px 5px #c7a0a0;
+            box-shadow: inset 0px 0px 5px #c1c1c1;
+            background: #289c2e;
+            -webkit-box-shadow: inset 0px 0px 5px #c1c1c1;
+
+        }
+
+        #output {
+            color: black;
+            border-radius: 5px;
+            width: 569px;
+            height: 30px;
+            background-color: #dcdbe1;
+            border: solid black 0.5px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <center>
+        <input type="text" id="output" placeholder="Enter Number for calculation" />
+        <input type="button" value="C" class="btn_value" onclick="inputClr()" />
+        <br><br>
+        <input type="button" class="btn_value" value="1" onclick="concatenateValue('1')" />
+        <input type="button" class="btn_value" value="2" onclick="concatenateValue('2')" />
+        <input type="button" class="btn_value" value="3" onclick="concatenateValue('3')" />
+        <input type="button" class="btn_value" value="/" onclick="concatenateValue('/')" />
+
+        <br><br>
+        <input type="button" class="btn_value" value="4" onclick="concatenateValue('4')" />
+        <input type="button" class="btn_value" value="5" onclick="concatenateValue('5')" />
+        <input type="button" class="btn_value" value="6" onclick="concatenateValue('6')" />
+        <input type="button" class="btn_value" value="-" onclick="concatenateValue('-')" />
+        <br><br>
+
+        <input type="button" class="btn_value" value="7" onclick="concatenateValue('7')" />
+        <input type="button" class="btn_value" value="8" onclick="concatenateValue('8')" />
+        <input type="button" class="btn_value" value="9" onclick="concatenateValue('9')" />
+        <input type="button" class="btn_value" value="+" onclick="concatenateValue('+')" />
+        <br><br>
+
+        <input type="button" class="btn_value" value="." onclick="concatenateValue('.')" />
+        <input type="button" class="btn_value" value="0" onclick="concatenateValue('0')" />
+        <input type="button" class="btn_value" value="=" onclick="performCalculation()" />
+        <input type="button" class="btn_value" value="*" onclick="concatenateValue('*')" />
+        <br><br>
+
+    </center>
+
+    <script>
+        var input = document.getElementById("output");
+        input.addEventListener("keypress", function (event) {
+            if (event.key === "Enter") {
+                event.preventDefault();
+                performCalculation();
+            }
+        });
+        function concatenateValue(value) {
+            document.getElementById("output").value += value;
+        }
+        function performCalculation() {
+            try {
+                let expression = document.getElementById("output").value;
+                let result = eval(expression);
+                document.getElementById("output").value = result;
+            } catch (err) {
+                document.getElementById("output").value = 'Incorrect Input';
+            }
+        }
+        function inputClr() {
+            document.getElementById("output").value = "";
+        }
+
+    </script>
+
+</body>
+
+</html>
